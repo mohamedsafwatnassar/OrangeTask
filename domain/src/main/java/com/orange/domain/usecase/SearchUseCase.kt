@@ -7,5 +7,5 @@ import com.orange.domain.utils.ResponseHandler
 class SearchUseCase(private val newsRepo: NewsRepo) {
 
     suspend operator fun invoke(): ResponseHandler<NewsResponse?> =
-        newsRepo.getNewsRemote()
+        newsRepo.getNewsFromRemote()
 }
