@@ -11,11 +11,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/Theme.OrangeTask.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_main"
         app:popupTheme="@style/Theme.OrangeTask.PopupOverlay">
 
         <TextView
@@ -25,9 +24,9 @@
             android:layout_marginHorizontal="@dimen/space_4x"
             android:layout_marginVertical="@dimen/space_2x"
             android:gravity="center"
+            style="@style/textStyle"
             android:textSize="@dimen/space_14x_sp"
             android:textStyle="normal"
-            android:textColor="@color/white"
             tools:text="toolBar title" />
 
     </androidx.appcompat.widget.Toolbar>
