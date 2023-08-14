@@ -46,4 +46,15 @@ class SharedPreferenceManager(private val context: Context) {
     fun getLanguage(): String? {
         return sharedPreferencesLanguage.getString(Constant.KEY_LANGUAGE, "en")
     }
+
+    fun setTheme(theme: String) {
+        with(sharedPreferencesLanguage.edit()) {
+            putString(Constant.KEY_THEME, theme)
+            apply()
+        }
+    }
+
+    fun getTheme(): String? {
+        return sharedPreferencesLanguage.getString(Constant.KEY_THEME, "")
+    }
 }

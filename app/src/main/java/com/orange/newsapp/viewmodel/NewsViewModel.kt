@@ -1,6 +1,9 @@
 package com.orange.newsapp.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.orange.domain.entity.NewsResponse
 import com.orange.domain.usecase.GetNewsUseCase
 import com.orange.domain.utils.ResponseHandler
@@ -8,9 +11,6 @@ import com.orange.newsapp.utils.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

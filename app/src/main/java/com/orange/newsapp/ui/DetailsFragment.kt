@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.orange.domain.entity.Article
 import com.orange.newsapp.databinding.FragmentDetailsBinding
 import com.orange.newsapp.utils.Constant
+import com.orange.newsapp.utils.base.BaseFragment
 import com.orange.newsapp.utils.onDebouncedListener
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentDetailsBinding
 
@@ -33,6 +33,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideLoading()
         article = if (Build.VERSION.SDK_INT >= 33) {
             requireArguments().getParcelable(Constant.KEY_ARTICLE, Article::class.java)
         } else {

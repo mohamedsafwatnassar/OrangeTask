@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="popupMenuBackground">@color/white</item>
     </style>
 
     <style name="Theme.OrangeTask.NoActionBar">
@@ -23,15 +25,31 @@
 
     <style name="Theme.OrangeTask.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MenuTextStyleLight">
+        <!-- Define properties for light mode menu items -->
+        <item name="backgroundColor">@color/white</item>
+    </style>
+
     <style name="CustomCardView">
         <item name="cardCornerRadius">@dimen/space_2x</item>
         <item name="cardElevation">@dimen/space_0_5x</item>
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="queryHint">@string/search_for_news_by_title</item>
+        <item name="queryBackground">@null</item>
+        <item name="searchHintIcon">@drawable/ic_search</item>
+    </style>
+
     <style name="textStyle">
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CustomBackgroundConstraint">
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="roundedImageView" parent="">

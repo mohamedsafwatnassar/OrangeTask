@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/choose_language"
+        android:text="@string/choose_theme"
         android:textSize="@dimen/space_18x_sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,16 +27,16 @@
         app:layout_constraintTop_toBottomOf="@id/title">
 
         <RadioButton
-            android:id="@+id/rbEnglish"
+            android:id="@+id/rbLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/english" />
+            android:text="@string/light" />
 
         <RadioButton
-            android:id="@+id/rbArabic"
+            android:id="@+id/rbDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/arabic" />
+            android:text="@string/dark" />
 
     </RadioGroup>
 

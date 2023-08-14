@@ -17,13 +17,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_4x"
             android:layout_marginTop="@dimen/space_3x"
+            style="@style/SearchViewStyle"
             android:background="@drawable/rounded_search_view"
             app:iconifiedByDefault="false"
             app:layout_constraintBottom_toTopOf="@id/rvNews"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryBackground="@null"
-            app:queryHint="@string/search_for_news_by_title"
-            app:searchIcon="@drawable/ic_search" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNews"

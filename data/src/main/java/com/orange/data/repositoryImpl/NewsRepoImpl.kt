@@ -14,7 +14,6 @@ class NewsRepoImpl(
 
     override suspend fun getNewsFromRemote(searchQuery: String): ResponseHandler<NewsResponse?> {
         return try {
-            ResponseHandler.Loading
             val response = apiService.getNewsList(searchQuery)
             if (response.isSuccessful) {
                 insertNewsIntoLocal(response.body()!!)

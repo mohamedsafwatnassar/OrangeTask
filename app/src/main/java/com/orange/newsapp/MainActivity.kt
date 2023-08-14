@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -18,6 +19,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.orange.newsapp.databinding.ActivityMainBinding
+import com.orange.newsapp.ui.DarkThemeDialogFragment
 import com.orange.newsapp.ui.LanguageDialogFragment
 import com.orange.newsapp.utils.*
 import com.orange.orangetask.ViewsManager
@@ -42,17 +44,37 @@ class MainActivity :
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // get Default language when install or open app
-        val currentLang: String = Locale.getDefault().language
-        // set default language in shared preference
-        SharedPreferenceManager(this).setLanguage(currentLang)
+        setDefaultLanguage()
 
+        setDefaultTheme()
+
+        initNavigationComponent()
+    }
+
+    private fun initNavigationComponent() {
         setSupportActionBar(binding.toolbar)
         binding.toolBarTitle.text = getString(R.string.app_name)
 
         navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    private fun setDefaultLanguage() {
+        // get Default language when install or open app
+        val currentLang: String = Locale.getDefault().language
+        // set default language in shared preference
+        SharedPreferenceManager(this).setLanguage(currentLang)
+    }
+
+    private fun setDefaultTheme() {
+        if (SharedPreferenceManager(this).getTheme() == Constant.LIGHT) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        } else if (SharedPreferenceManager(this).getTheme() == Constant.DARK) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,6 +91,11 @@ class MainActivity :
             R.id.action_language -> {
                 val dialogFragment = LanguageDialogFragment()
                 dialogFragment.show(supportFragmentManager, "LanguageDialogFragment")
+                true
+            }
+            R.id.action_theme -> {
+                val dialogFragment = DarkThemeDialogFragment()
+                dialogFragment.show(supportFragmentManager, "DarkThemeDialogFragment")
                 true
             }
             else -> super.onOptionsItemSelected(item)

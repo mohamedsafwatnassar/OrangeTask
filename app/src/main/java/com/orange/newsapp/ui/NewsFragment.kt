@@ -88,7 +88,9 @@ class NewsFragment : BaseFragment() {
                 is ResponseHandler.Error -> {
                     toast(it.message ?: "")
                 }
-                else -> {}
+                else -> {
+                    toast(it?.message ?: "")
+                }
             }
         }
     }
@@ -97,8 +99,8 @@ class NewsFragment : BaseFragment() {
         binding.rvNews.apply {
             newsListAdapter =
                 NewsAdapter(itemNewClickCallBack)
-            adapter = newsListAdapter
             newsListAdapter.submitData(articles)
+            adapter = newsListAdapter
         }
     }
 }
