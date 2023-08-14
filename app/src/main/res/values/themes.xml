@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/space_12x_sp</item>
         <item name="popupMenuBackground">@color/white</item>
     </style>
 
@@ -54,7 +55,7 @@
 
     <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">12dp</item>
+        <item name="cornerSize">@dimen/space_3x</item>
     </style>
 
 </resources>
