@@ -22,4 +22,11 @@
     <style name="Theme.OrangeTask.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.OrangeTask.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="textStyle" >
+        <!-- <item name="android:fontFamily">@font/comfortaa_bold</item>-->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

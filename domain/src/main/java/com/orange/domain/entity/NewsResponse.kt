@@ -3,6 +3,7 @@ package com.orange.domain.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = "articles")
 class NewsResponse(
@@ -13,6 +14,7 @@ class NewsResponse(
     var articles: List<Article>
 )
 
+@Serializable
 data class Article(
     @SerializedName("author")
     var author: String?,
@@ -32,6 +34,7 @@ data class Article(
     var urlToImage: String?
 )
 
+@Serializable
 data class Source(
     @SerializedName("id")
     var id: String?,

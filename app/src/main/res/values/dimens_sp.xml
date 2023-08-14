@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_0x_sp">0sp</dimen>
+    <dimen name="space_1x_sp">1sp</dimen>
+    <dimen name="space_2x_sp">2sp</dimen>
+    <dimen name="space_3x_sp">3sp</dimen>
+    <dimen name="space_4x_sp">4sp</dimen>
+    <dimen name="space_5x_sp">5sp</dimen>
+    <dimen name="space_6x_sp">6sp</dimen>
+    <dimen name="space_7x_sp">7sp</dimen>
+    <dimen name="space_8x_sp">8sp</dimen>
+    <dimen name="space_9x_sp">9sp</dimen>
+    <dimen name="space_10x_sp">10sp</dimen>
+    <dimen name="space_11x_sp">11sp</dimen>
+    <dimen name="space_12x_sp">12sp</dimen>
+    <dimen name="space_13x_sp">13sp</dimen>
+    <dimen name="space_14x_sp">14sp</dimen>
+    <dimen name="space_15x_sp">15sp</dimen>
+    <dimen name="space_16x_sp">16sp</dimen>
+    <dimen name="space_18x_sp">17sp</dimen>
+    <dimen name="space_19x_sp">19sp</dimen>
+    <dimen name="space_20x_sp">20sp</dimen>
+    <dimen name="space_21x_sp">21sp</dimen>
+    <dimen name="space_22x_sp">22sp</dimen>
+    <dimen name="space_23x_sp">23sp</dimen>
+    <dimen name="space_24x_sp">24sp</dimen>
+</resources>

@@ -1,9 +1,8 @@
 package com.orange.data.repositoryImpl
 
-import com.orange.data.BuildConfig
+import android.util.Log
 import com.orange.data.local.NewsListDao
 import com.orange.data.remote.ApiService
-import com.orange.domain.entity.NewsRequest
 import com.orange.domain.entity.NewsResponse
 import com.orange.domain.repository.NewsRepo
 import com.orange.domain.utils.ResponseHandler
@@ -13,13 +12,10 @@ class NewsRepoImpl(
     private val newsListDao: NewsListDao
 ) : NewsRepo {
 
-    override suspend fun getNewsFromRemote(): ResponseHandler<NewsResponse?> {
-        ResponseHandler.Loading
+    override suspend fun getNewsFromRemote(searchQuery: String): ResponseHandler<NewsResponse?> {
         return try {
-            val response = apiService.getNewsList(
-                "apple",
-                BuildConfig.API_KEY
-            )
+            ResponseHandler.Loading
+            val response = apiService.getNewsList(searchQuery)
             if (response.isSuccessful) {
                 insertNewsIntoLocal(response.body()!!)
                 ResponseHandler.Success(response.body()!!)
@@ -32,7 +28,11 @@ class NewsRepoImpl(
     }
 
     private fun insertNewsIntoLocal(list: NewsResponse) {
-        newsListDao.insert(list)
+        try {
+            newsListDao.insert(list)
+        } catch (e: Exception) {
+            Log.d("Exception", e.localizedMessage!!)
+        }
     }
 
     private fun getNewsFromLocal(): ResponseHandler<NewsResponse?> {
@@ -41,12 +41,5 @@ class NewsRepoImpl(
         } catch (error: Exception) {
             ResponseHandler.Error(error.localizedMessage)
         }
-    }
-
-    override suspend fun search(
-        newsRequest: NewsRequest,
-        page: Int
-    ): ResponseHandler<NewsResponse?>? {
-        return null
     }
 }

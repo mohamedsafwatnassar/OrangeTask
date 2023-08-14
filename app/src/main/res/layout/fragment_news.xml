@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsFragment">
+    tools:context=".ui.NewsFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/space_4x"
+        android:layout_marginTop="@dimen/space_3x"
         android:background="@drawable/rounded_search_view"
         app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@id/rvNews"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@null"
         app:queryHint="@string/search_for_news_by_title"
         app:searchIcon="@drawable/ic_search" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNews"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView"
-        tools:itemCount="3"
+        tools:itemCount="5"
         tools:listitem="@layout/item_news" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

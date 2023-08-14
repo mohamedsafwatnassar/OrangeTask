@@ -9,7 +9,7 @@ import com.orange.domain.entity.NewsResponse
 interface NewsListDao {
 
     @Insert
-    fun insert(newsResponse: NewsResponse): NewsResponse
+    fun insert(newsResponse: NewsResponse)
 
     @Query("Select * from articles")
     fun getNews(): NewsResponse
