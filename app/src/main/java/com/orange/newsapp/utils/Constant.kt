@@ -3,7 +3,6 @@ package com.orange.newsapp.utils
 import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.orange.newsapp.R
 
 object Constant {
     const val All = "a"
