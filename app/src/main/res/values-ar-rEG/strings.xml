@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الأخبار</string>
+
+    <string name="search_for_news_by_title">البحث عن الأخبار حسب العناوين</string>
+    <string name="cancel">إلغاء الأمر</string>
+    <string name="no_internet">لا يوجد إنترنت</string>
+    <string name="reconnect">معاوده الاتصال</string>
+    <string name="language">اللغة</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+</resources>

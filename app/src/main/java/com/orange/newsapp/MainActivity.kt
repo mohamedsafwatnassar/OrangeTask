@@ -1,10 +1,13 @@
 package com.orange.newsapp
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,11 +18,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.orange.newsapp.databinding.ActivityMainBinding
-import com.orange.newsapp.utils.ConnectivityReceiver
-import com.orange.newsapp.utils.gone
-import com.orange.newsapp.utils.visible
+import com.orange.newsapp.ui.LanguageDialogFragment
+import com.orange.newsapp.utils.*
 import com.orange.orangetask.ViewsManager
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity :
@@ -39,17 +42,50 @@ class MainActivity :
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // get Default language when install or open app
+        val currentLang: String = Locale.getDefault().language
+        // set default language in shared preference
+        SharedPreferenceManager(this).setLanguage(currentLang)
+
         setSupportActionBar(binding.toolbar)
-        binding.toolBarTitle.text = binding.toolbar.title
+        binding.toolBarTitle.text = getString(R.string.app_name)
 
         navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_language -> {
+                val dialogFragment = LanguageDialogFragment()
+                dialogFragment.show(supportFragmentManager, "LanguageDialogFragment")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) ||
             super.onSupportNavigateUp()
+    }
+
+    override fun attachBaseContext(context: Context) {
+        // ** handle locale
+        val currentLang = SharedPreferenceManager(context).getLanguage()
+        context.resources.configuration.setLocale(Locale(currentLang!!))
+        applyOverrideConfiguration(context.resources.configuration)
+        super.attachBaseContext(LocalHelper.onAttach(context))
     }
 
     override fun onStart() {
