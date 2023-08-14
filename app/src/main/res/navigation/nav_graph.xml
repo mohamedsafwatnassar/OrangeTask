@@ -11,18 +11,17 @@
         android:label="News"
         tools:layout="@layout/fragment_news">
         <action
-            android:id="@+id/action_news_to_Second"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_news_to_details"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.orange.newsapp.ui.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/detailsFragment"
+        android:name="com.orange.newsapp.ui.DetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_SecondFragment_to_newsFragment"
+            android:id="@+id/action_details_to_news"
             app:destination="@id/newsFragment" />
     </fragment>
 

@@ -98,7 +98,7 @@ class MainActivity :
             binding.root,
             getString(R.string.no_internet),
             Snackbar.LENGTH_INDEFINITE
-        ).setActionTextColor(ContextCompat.getColor(this, R.color.purple_200))
+        ).setActionTextColor(ContextCompat.getColor(this, R.color.primary))
             .setTextColor(ContextCompat.getColor(this, R.color.white))
             .setAction(getString(R.string.reconnect)) {
                 AlertDialog.Builder(this)

@@ -3,12 +3,12 @@ package com.orange.newsapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.orange.domain.entity.Article
 import com.orange.newsapp.databinding.ItemNewsBinding
+import com.orange.newsapp.utils.Constant
 
 class NewsAdapter(
-    private val itemNewClickCallBack: (orderModel: Article) -> Unit
+    private val itemNewClickCallBack: (article: Article) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     private var newsList: List<Article> = ArrayList()
@@ -40,12 +40,7 @@ class NewsAdapter(
     }
 
     private fun bindData(holder: NewsViewHolder, article: Article) {
-        Glide.with(holder.itemView.context)
-            .load(article.urlToImage)
-            // .placeholder(R.drawable.ic_placeholder_school)
-            // .error(R.drawable.ic_placeholder_school)
-            .into(holder.imgNews)
-
+        Constant.loadImage(holder.itemView.context, article.urlToImage ?: "", holder.imgNews)
         holder.title.text = article.title
         holder.source.text = article.source.name
     }

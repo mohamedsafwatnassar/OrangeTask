@@ -2,12 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CustomCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/space_4x"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/space_2x"
-    app:cardElevation="@dimen/space_0_5x">
+    android:layout_margin="@dimen/space_4x">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -48,11 +46,11 @@
 
         <TextView
             android:id="@+id/source"
+            style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_4x"
             android:layout_marginVertical="@dimen/space_2x"
-            style="@style/textStyle"
             android:maxLines="1"
             android:textSize="@dimen/space_12x_sp"
             android:textStyle="normal"

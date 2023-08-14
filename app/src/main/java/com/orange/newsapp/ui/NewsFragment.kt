@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.orange.domain.entity.Article
 import com.orange.domain.utils.ResponseHandler
+import com.orange.newsapp.R
 import com.orange.newsapp.adapter.NewsAdapter
 import com.orange.newsapp.databinding.FragmentNewsBinding
+import com.orange.newsapp.utils.Constant
 import com.orange.newsapp.utils.base.BaseFragment
 import com.orange.newsapp.utils.toast
 import com.orange.newsapp.viewmodel.NewsViewModel
@@ -29,8 +32,9 @@ class NewsFragment : BaseFragment() {
 
     private val itemNewClickCallBack: (article: Article) -> Unit =
         { article ->
-            // vm.articleItem = article
-            // findNavController().navigate(R.id.action_newsList_to_newsDetails)
+            val bundle = Bundle()
+            bundle.putParcelable(Constant.KEY_ARTICLE, article)
+            findNavController().navigate(R.id.action_news_to_details, bundle)
         }
 
     override fun onCreateView(
@@ -50,6 +54,11 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun setBtnListeners() {
+        binding.refreshNews.setOnRefreshListener {
+            vm.getNewsList()
+            binding.refreshNews.isRefreshing = false
+        }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
