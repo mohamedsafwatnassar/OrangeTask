@@ -16,8 +16,10 @@ News application to search for news and preview details of any of them.
 + ## :domain module - Business layer that contains Repository interfaces and Models (Entities)
 + ## [MVVM] Model-View-ViewModel design pattern
 
-* get news list and can make search new by title
-<img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/5f4f4f74-47ea-4261-99cb-83ea83cab001" width="200" height="400" />
+* get news list and can make search for news by title
+<img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/bfbb8500-fbec-49c6-a2d8-dc3acd0b4f4c" width="200" height="400" />
 
+* Show news details
+<img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/08ff96ca-988a-46de-ab72-008d1086556f" width="200" height="400" />
 
 
