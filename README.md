@@ -18,10 +18,10 @@
 - ### [MVVM] Model-View-ViewModel design pattern
 
 
-- get news list and can make search for news by title
+# get news list and can make search for news by title
 <img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/bfbb8500-fbec-49c6-a2d8-dc3acd0b4f4c" width="200" height="400" />
 
-- Show news details
+# Show news details
 <img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/08ff96ca-988a-46de-ab72-008d1086556f" width="200" height="400" />
 
 
