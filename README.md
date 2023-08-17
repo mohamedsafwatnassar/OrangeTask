@@ -2,12 +2,12 @@
 News application to search for news and preview details of any of them.
 
 # Libraries and Frameworks
-> ## Material Design - Design System
-> ## Retrofit - HTTP Client
-> ## Kotlin Serlization - Kotlin Multiplatform Serialization
-> ## Room - Local Database
-> ## Hilt - Dependency Injection
-> ## Glide - Image Loading
+- ## Material Design - Design System
+- ## Retrofit - HTTP Client
+- ## Kotlin Serlization - Kotlin Multiplatform Serialization
+- ## Room - Local Database
+- ## Hilt - Dependency Injection
+- ## Glide - Image Loading
 
 # Architecture and Design Patterns
 ## Clean Architecture - Application architecture pattern
