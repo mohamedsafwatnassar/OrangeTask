@@ -10,11 +10,11 @@
 - ### Glide - Image Loading
 
 # Architecture and Design Patterns
-- ### Clean Architecture - Application architecture pattern: 
-* ### app module - Presentation layer that contains UI related code and dependency injection
-+ ### data module - Data layer that contains DAOs, DTOs, Mapper, Http services, Data sources and Repository Implementation
-+ ### domain module - Business layer that contains Repository interfaces and Models (Entities)
-+ ### [MVVM] Model-View-ViewModel design pattern
++ ### Clean Architecture - Application architecture pattern: 
+- ### app module - Presentation layer that contains UI related code and dependency injection
+- ### data module - Data layer that contains DAOs, DTOs, Mapper, Http services, Data sources and Repository Implementation
+- ### domain module - Business layer that contains Repository interfaces and Models (Entities)
+- ### [MVVM] Model-View-ViewModel design pattern
 
 * get news list and can make search for news by title
 <img src="https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/bfbb8500-fbec-49c6-a2d8-dc3acd0b4f4c" width="200" height="400" />
