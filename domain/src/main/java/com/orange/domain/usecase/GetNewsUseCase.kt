@@ -8,8 +8,4 @@ class GetNewsUseCase(private val newsRepo: NewsRepo) {
 
     suspend operator fun invoke(searchQuery: String): ResponseHandler<NewsResponse?> =
         newsRepo.getNewsFromRemote(searchQuery)
-
-//    operator fun invoke(searchQuery: String): Flow<ResponseHandler<NewsResponse?>> = flow {
-//        emit(newsRepo.getNewsFromRemote(searchQuery))
-//    }
 }

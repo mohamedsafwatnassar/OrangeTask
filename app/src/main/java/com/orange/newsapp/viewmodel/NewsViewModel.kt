@@ -18,7 +18,6 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
-    // empty list
 
     private val _getNewsMutableState: MutableLiveData<ResponseHandler<NewsResponse?>?> =
         MutableLiveData()
@@ -28,11 +27,6 @@ class NewsViewModel @Inject constructor(
     init {
         getNewsList()
     }
-
-//    val userFlow = getNewsUseCase(searchText)
-//        .flowOn(Dispatchers.IO) // Specify background thread
-//        .onEach { /* Update UI with user data */ }
-//        .catch { /* Handle error */ }.asLiveData()
 
     fun getNewsList(searchQuery: String = "") {
         var searchText = Constant.All
