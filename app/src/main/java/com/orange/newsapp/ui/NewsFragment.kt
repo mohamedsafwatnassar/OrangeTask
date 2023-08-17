@@ -9,13 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.orange.domain.entity.Article
-import com.orange.domain.utils.ResponseHandler
 import com.orange.newsapp.R
-import com.orange.newsapp.adapter.NewsAdapter
+import com.orange.newsapp.adapter.NewsPagingAdapter
 import com.orange.newsapp.databinding.FragmentNewsBinding
 import com.orange.newsapp.utils.Constant
 import com.orange.newsapp.utils.base.BaseFragment
-import com.orange.newsapp.utils.toast
 import com.orange.newsapp.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -27,8 +25,6 @@ class NewsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentNewsBinding
     private val vm: NewsViewModel by viewModels()
-
-    private lateinit var newsListAdapter: NewsAdapter
 
     private val itemNewClickCallBack: (article: Article) -> Unit =
         { article ->
@@ -49,13 +45,25 @@ class NewsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBtnListeners()
-        // observer MutableLive data in view model
-        subscribeData()
+        subscribePagingData()
+    }
+
+    private fun subscribePagingData() {
+        val adapter = NewsPagingAdapter(itemNewClickCallBack)
+        binding.rvNews.apply {
+            itemAnimator = null
+            setHasFixedSize(true)
+            this.adapter = adapter
+        }
+        // Observe the dataPaging flow and submit data to the adapter
+        vm.getNewsLiveData().observe(viewLifecycleOwner) { pagingData ->
+            adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        }
     }
 
     private fun setBtnListeners() {
         binding.refreshNews.setOnRefreshListener {
-            vm.getNewsList()
+            // vm.getNewsList()
             binding.refreshNews.isRefreshing = false
         }
 
@@ -69,7 +77,7 @@ class NewsFragment : BaseFragment() {
                     val searchText = newText?.trim()
                     searchText?.let {
                         delay(1000)
-                        vm.getNewsList(it)
+                        // vm.getNews(it)
                     }
                 }
                 return false
@@ -77,30 +85,8 @@ class NewsFragment : BaseFragment() {
         })
     }
 
-    private fun subscribeData() {
-        vm.getNewsLiveState.observe(viewLifecycleOwner) {
-            when (it) {
-                is ResponseHandler.Success -> {
-                    hideLoading()
-                    // initialize recycler view to set news list
-                    initRecycler(it.data!!.articles)
-                }
-                is ResponseHandler.Error -> {
-                    toast(it.message ?: "")
-                }
-                else -> {
-                    toast(it?.message ?: "")
-                }
-            }
-        }
-    }
-
-    private fun initRecycler(articles: List<Article>) {
-        binding.rvNews.apply {
-            newsListAdapter =
-                NewsAdapter(itemNewClickCallBack)
-            newsListAdapter.submitData(articles)
-            adapter = newsListAdapter
-        }
+    override fun onResume() {
+        super.onResume()
+        hideLoading()
     }
 }

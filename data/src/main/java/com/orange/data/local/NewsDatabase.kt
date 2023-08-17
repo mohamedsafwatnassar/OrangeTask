@@ -8,10 +8,10 @@ import androidx.room.TypeConverters
 import com.orange.domain.entity.NewsResponse
 
 @TypeConverters(Converter::class)
-@Database(entities = [NewsResponse::class], version = 3)
+@Database(entities = [NewsResponse::class], version = 4)
 abstract class NewsDatabase : RoomDatabase() {
 
-    abstract fun newsListDao(): NewsListDao
+    abstract fun newsListDao(): ArticleDao
 
     companion object {
         private var instance: NewsDatabase? = null

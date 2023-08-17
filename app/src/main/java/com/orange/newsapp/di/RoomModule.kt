@@ -2,7 +2,7 @@ package com.orange.newsapp.di
 
 import android.content.Context
 import com.orange.data.local.NewsDatabase
-import com.orange.data.local.NewsListDao
+import com.orange.data.local.ArticleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun provideNewsDao(@ApplicationContext context: Context): NewsListDao {
+    fun provideNewsDao(@ApplicationContext context: Context): ArticleDao {
         return NewsDatabase.getInstance(context).newsListDao()
     }
 }

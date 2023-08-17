@@ -1,44 +1,36 @@
 package com.orange.data.repositoryImpl
 
-import android.util.Log
-import com.orange.data.local.NewsListDao
+import android.nfc.tech.MifareUltralight.PAGE_SIZE
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.orange.data.local.ArticleDao
+import com.orange.data.paging.NewsPagingSource
 import com.orange.data.remote.ApiService
+import com.orange.domain.entity.Article
 import com.orange.domain.entity.NewsResponse
 import com.orange.domain.repository.NewsRepo
-import com.orange.domain.utils.ResponseHandler
+import kotlinx.coroutines.flow.Flow
 
 class NewsRepoImpl(
     private val apiService: ApiService,
-    private val newsListDao: NewsListDao
+    private val articleDao: ArticleDao
 ) : NewsRepo {
 
-    override suspend fun getNewsFromRemote(searchQuery: String): ResponseHandler<NewsResponse?> {
-        return try {
-            val response = apiService.getNewsList(searchQuery)
-            if (response.isSuccessful) {
-                insertNewsIntoLocal(response.body()!!)
-                ResponseHandler.Success(response.body()!!)
-            } else {
-                getNewsFromLocal()
-            }
-        } catch (ex: Exception) {
-            getNewsFromLocal()
-        }
+    override fun getNewsFromRemote(
+        searchQuery: String
+    ): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
+            pagingSourceFactory = { NewsPagingSource(apiService, searchQuery) }
+        ).flow
     }
 
-    private fun insertNewsIntoLocal(list: NewsResponse) {
-        try {
-            newsListDao.insert(list)
-        } catch (e: Exception) {
-            Log.d("Exception", e.localizedMessage!!)
-        }
+    override suspend fun insertNewsIntoLocal(list: NewsResponse) {
+        articleDao.insert(list)
     }
 
-    private fun getNewsFromLocal(): ResponseHandler<NewsResponse?> {
-        return try {
-            ResponseHandler.Success(newsListDao.getNews())
-        } catch (error: Exception) {
-            ResponseHandler.Error(error.localizedMessage)
-        }
+    override suspend fun getNewsFromLocal(): Flow<NewsResponse> {
+        return articleDao.getNews()
     }
 }

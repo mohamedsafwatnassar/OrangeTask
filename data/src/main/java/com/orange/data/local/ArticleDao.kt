@@ -4,13 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.orange.domain.entity.NewsResponse
+import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NewsListDao {
+interface ArticleDao {
 
     @Insert
     fun insert(newsResponse: NewsResponse)
 
     @Query("Select * from articles")
-    fun getNews(): NewsResponse
+    fun getNews(): Flow<NewsResponse>
 }

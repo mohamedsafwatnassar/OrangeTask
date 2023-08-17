@@ -52,7 +52,7 @@ class DetailsFragment : BaseFragment() {
         binding.publishedAt.text = convertDateFormat(article?.publishedAt.toString())
         binding.description.text = article?.description
         binding.content.text = article?.content
-        binding.source.text = article?.source?.name
+        // binding.source.text = article?.source?.name
     }
 
     private fun setBtnListener() {

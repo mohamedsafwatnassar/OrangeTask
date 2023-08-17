@@ -12,6 +12,8 @@ interface ApiService {
     @GET("everything")
     suspend fun getNewsList(
         @Query("q") searchQuery: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int,
         @Query("language") language: String = Locale.getDefault().language,
         @Query("sortBy") sortBy: String = "publishedAt",
         @Query("apiKey") apiKey: String = BuildConfig.API_KEY

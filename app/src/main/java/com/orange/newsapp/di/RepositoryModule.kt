@@ -1,6 +1,6 @@
 package com.orange.newsapp.di
 
-import com.orange.data.local.NewsListDao
+import com.orange.data.local.ArticleDao
 import com.orange.data.remote.ApiService
 import com.orange.data.repositoryImpl.NewsRepoImpl
 import com.orange.domain.repository.NewsRepo
@@ -16,7 +16,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepo(apiService: ApiService, newsListDao: NewsListDao): NewsRepo {
+    fun provideRepo(apiService: ApiService, newsListDao: ArticleDao): NewsRepo {
         return NewsRepoImpl(apiService, newsListDao)
     }
 }

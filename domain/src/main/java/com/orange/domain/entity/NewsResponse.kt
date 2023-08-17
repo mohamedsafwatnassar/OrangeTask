@@ -27,8 +27,8 @@ data class Article(
     var description: String?,
     @SerializedName("publishedAt")
     var publishedAt: String?,
-    @SerializedName("source")
-    var source: Source,
+    // @SerializedName("source")
+    // var source: Source,
     @SerializedName("title")
     var title: String?,
     @SerializedName("url")

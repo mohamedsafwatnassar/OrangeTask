@@ -2,55 +2,60 @@ package com.orange.newsapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.orange.domain.entity.Article
 import com.orange.newsapp.databinding.ItemNewsBinding
 import com.orange.newsapp.utils.Constant
 
-class NewsAdapter(
-    private val itemNewClickCallBack: (article: Article) -> Unit
-) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsPagingAdapter(private val itemNewClickCallBack: (article: Article) -> Unit) :
+    PagingDataAdapter<Article, NewsPagingAdapter.NewsViewHolder>(DiffCallback) {
 
-    private var newsList: List<Article> = ArrayList()
+    companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem.url == newItem.url
+        }
 
-    private lateinit var binding: ItemNewsBinding
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem == newItem
+        }
+    }
 
-    inner class NewsViewHolder(itemView: ItemNewsBinding) :
-        RecyclerView.ViewHolder(itemView.root) {
-        val imgNews = itemView.imgNews
-        val title = itemView.title
-        val source = itemView.source
+    inner class NewsViewHolder(private val binding: ItemNewsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        // inner class means we can access parent class' methods and properties like 'getItem'
 
         init {
-            itemView.root.setOnClickListener {
-                itemNewClickCallBack.invoke(newsList[adapterPosition])
+
+            binding.apply {
+                root.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    val newsItem = getItem(position)
+                    itemNewClickCallBack.invoke(newsItem!!)
+                }
+            }
+        }
+
+        fun bind(holder: NewsViewHolder, article: Article) {
+            binding.apply {
+                Constant.loadImage(holder.itemView.context, article.urlToImage ?: "", imgNews)
+                title.text = article.title
+                // source.text = article.source.name
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val article = newsList[position]
-        // bind view
-        bindData(holder, article)
-    }
-
-    private fun bindData(holder: NewsViewHolder, article: Article) {
-        Constant.loadImage(holder.itemView.context, article.urlToImage ?: "", holder.imgNews)
-        holder.title.text = article.title
-        holder.source.text = article.source.name
-    }
-
-    override fun getItemCount(): Int {
-        return newsList.size
-    }
-
-    fun submitData(data: List<Article>) {
-        newsList = data
-        notifyDataSetChanged()
+        val currentItem = getItem(position)
+        if (currentItem != null) {
+            holder.bind(holder, currentItem)
+        }
     }
 }
