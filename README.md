@@ -17,7 +17,7 @@ News application to search for news and preview details of any of them.
 + ## [MVVM] Model-View-ViewModel design pattern
 
 * get news list and can make search new by title 
-<p align="start">
-  <img width="200" height="400" src="[https://user-images.githubusercontent.com/55391701/107904965-05328680-6f56-11eb-827b-840d970c1f93.png](https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/5f4f4f74-47ea-4261-99cb-83ea83cab001)https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/5f4f4f74-47ea-4261-99cb-83ea83cab001">
+<p align="center">
+  <img width="200" height="400" src="[https://github.com/mohamedsafwatnassar/OrangeTask/assets/55391701/5f4f4f74-47ea-4261-99cb-83ea83cab001">
 </p>
 
