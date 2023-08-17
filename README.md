@@ -3,6 +3,7 @@
 
 # Libraries and Frameworks
 - ### Material Design - Design System
+- ### Navigation component
 * ### Retrofit - HTTP Client
 + ### Kotlin Serlization - Kotlin Multiplatform Serialization
 - ### Room - Local Database
