@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.orange.domain.entity.Article
 import com.orange.newsapp.databinding.ItemNewsBinding
-import com.orange.newsapp.utils.Constant
+import com.orange.newsapp.utils.Utils
 
 class NewsAdapter(
     private val itemNewClickCallBack: (article: Article) -> Unit
@@ -40,7 +40,7 @@ class NewsAdapter(
     }
 
     private fun bindData(holder: NewsViewHolder, article: Article) {
-        Constant.loadImage(holder.itemView.context, article.urlToImage ?: "", holder.imgNews)
+        Utils.loadImage(holder.itemView.context, article.urlToImage ?: "", holder.imgNews)
         holder.title.text = article.title
         holder.source.text = article.source.name
     }

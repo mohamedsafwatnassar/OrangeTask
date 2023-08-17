@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.orange.domain.entity.Article
 import com.orange.newsapp.databinding.FragmentDetailsBinding
 import com.orange.newsapp.utils.Constant
+import com.orange.newsapp.utils.Utils
 import com.orange.newsapp.utils.base.BaseFragment
 import com.orange.newsapp.utils.onDebouncedListener
 import java.text.SimpleDateFormat
@@ -47,7 +48,7 @@ class DetailsFragment : BaseFragment() {
     private fun initViews() {
         // set view
         binding.title.text = article?.title
-        Constant.loadImage(requireContext(), article?.urlToImage ?: "", binding.imgNews)
+        Utils.loadImage(requireContext(), article?.urlToImage ?: "", binding.imgNews)
         binding.author.text = article?.author
         binding.publishedAt.text = convertDateFormat(article?.publishedAt.toString())
         binding.description.text = article?.description

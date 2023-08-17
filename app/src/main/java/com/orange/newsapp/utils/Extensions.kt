@@ -12,22 +12,6 @@ fun Fragment.toast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 }
 
-// fun NavController.customNavigate(
-//    @IdRes destinationId: Int,
-//    inclusive:Boolean = false,
-//    data: Bundle? = null
-// ) {
-//    val navOption =
-//        NavOptions.Builder().apply {
-//            setPopUpTo(destinationId, inclusive)
-//            setEnterAnim(R.anim.slide_from_out_right_to_center)
-//            setExitAnim(R.anim.slide_from_center_to_out_left)
-//            setPopEnterAnim(R.anim.slide_from_out_left_to_center)
-//            setPopExitAnim(R.anim.slide_from_center_to_out_right)
-//        }.build()
-//    navigate(destinationId, data, navOption)
-// }
-
 inline fun View.onDebouncedListener(
     delayInClick: Long = 500L,
     crossinline listener: (View) -> Unit
