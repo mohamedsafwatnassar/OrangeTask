@@ -15,3 +15,5 @@ News application to search for news and preview details of any of them.
 + ## :data module - Data layer that contains DAOs, DTOs, Mapper, Http services, Data sources and Repository Implementation
 + ## :domain module - Business layer that contains Repository interfaces and Models (Entities)
 + ## [MVVM] Model-View-ViewModel design pattern
+
+![News screen](8a637ccf-368f-43db-80aa-64bdeeba4151.jpeg")
